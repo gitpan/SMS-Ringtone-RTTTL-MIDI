@@ -11,12 +11,12 @@ use SMS::Ringtone::RTTTL::MIDI;
 use IO::String; # Add line "sub BINMODE {}" to this module.
 our @ISA = qw(Exporter);
 our @EXPORT = qw(rtttl_to_midi);
-our $VERSION = '0.02';
+our $VERSION = '0.04';
 
 1;
 
 sub rtttl_to_midi {
- my $parser = shift; # SMS::Ringtone::RTTTL::MIDI object
+ my $parser = shift; # SMS::Ringtone::RTTTL::Parser object
  my $patch = shift; # Instrument
  unless(defined($patch)) {
   $patch = 1; # Piano
@@ -70,12 +70,12 @@ SMS::Ringtone::RTTTL::MIDI - convert RTTTL strings to MIDI format.
              '8p,g#,8f#,8f,8f,8f#,8g#,c#,d#,2f,2p,g#,c#,8p,' .
              'c#6,8a#,g#,c#,8p,g#,8f#,8f,8f,8f#,8g#,c#,d#,2c#';
 
- my $p = new SMS::Ringtone::RTTTL::MIDI($rtttl);
+ my $p = new SMS::Ringtone::RTTTL::Parser($rtttl);
 
  # Check for errors
- if ($r->has_errors()) {
+ if ($p->has_errors()) {
   print "The following RTTTL errors were found:\n";
-  foreach (@{$r->get_errors()}) {
+  foreach (@{$p->get_errors()}) {
    print "$_\n";
   }
   exit;
@@ -88,7 +88,7 @@ SMS::Ringtone::RTTTL::MIDI - convert RTTTL strings to MIDI format.
  open(F);
  binmode(F);
  print F $midi;
- close(F)
+ close(F);
 
 
 =head1 DESCRIPTION
@@ -210,6 +210,14 @@ Initial version.
 =item Version 0.02  2001-11-05
 
 Changed default instrument from Drawbar Organ (17) to Piano (1).
+
+=item Version 0.03  2001-12-27
+
+Fixed comment error and added some tests.
+
+=item Version 0.04  2002-01-02
+
+Fixed documentation errors in synopsis.
 
 =back
 

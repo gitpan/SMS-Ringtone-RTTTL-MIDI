@@ -48,12 +48,12 @@
              '8p,g#,8f#,8f,8f,8f#,8g#,c#,d#,2f,2p,g#,c#,8p,' .
              'c#6,8a#,g#,c#,8p,g#,8f#,8f,8f,8f#,8g#,c#,d#,2c#';</PRE>
 <PRE>
- my $p = new SMS::Ringtone::RTTTL::MIDI($rtttl);</PRE>
+ my $p = new SMS::Ringtone::RTTTL::Parser($rtttl);</PRE>
 <PRE>
  # Check for errors
- if ($r-&gt;has_errors()) {
+ if ($p-&gt;has_errors()) {
   print &quot;The following RTTTL errors were found:\n&quot;;
-  foreach (@{$r-&gt;get_errors()}) {
+  foreach (@{$p-&gt;get_errors()}) {
    print &quot;$_\n&quot;;
   }
   exit;
@@ -66,7 +66,7 @@
  open(F);
  binmode(F);
  print F $midi;
- close(F)</PRE>
+ close(F);</PRE>
 <P>
 <HR>
 <H1><A NAME="description">DESCRIPTION</A></H1>
@@ -181,6 +181,14 @@ Initial version.
 <DT><STRONG><A NAME="item_Version_0%2E02_2001%2D11%2D05">Version 0.02  2001-11-05</A></STRONG><BR>
 <DD>
 Changed default instrument from Drawbar Organ (17) to Piano (1).
+<P></P>
+<DT><STRONG><A NAME="item_Version_0%2E03_2001%2D12%2D27">Version 0.03  2001-12-27</A></STRONG><BR>
+<DD>
+Fixed comment error and added some tests.
+<P></P>
+<DT><STRONG><A NAME="item_Version_0%2E04_2002%2D01%2D02">Version 0.04  2002-01-02</A></STRONG><BR>
+<DD>
+Fixed documentation errors in synopsis.
 <P></P></DL>
 <P>
 <HR>
